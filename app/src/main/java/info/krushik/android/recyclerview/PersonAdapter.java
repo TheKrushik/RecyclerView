@@ -47,4 +47,16 @@ public class PersonAdapter extends RecyclerView.Adapter<PersonViewHolder> {
         return persons.size();
     }
 
+
+    //интерфейс
+    public static OnItemClickListener listener;
+
+    public interface OnItemClickListener{
+        void onItemClick(View itemView, int position);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener){
+        this.listener = listener;
+    }
+
 }

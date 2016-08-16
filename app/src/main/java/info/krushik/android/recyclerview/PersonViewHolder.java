@@ -12,12 +12,22 @@ public class PersonViewHolder extends RecyclerView.ViewHolder {
     public TextView tvId;
 
     //объявляем конструктор
-    public PersonViewHolder(View itemView){
+    public PersonViewHolder(final View itemView){
         super(itemView);
 
         //привязываем элементы к полям
         tvId = (TextView)itemView.findViewById(R.id.tvId);
         tvFirstName = (TextView)itemView.findViewById(R.id.tvFirstName);
         tvLastName = (TextView)itemView.findViewById(R.id.tvLastName);
+
+        //Как и прежде, мы привязываемся из ViewHolder, но вызываем метод адаптера.
+        itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (PersonAdapter.listener!=null){
+                    PersonAdapter.listener.onItemClick(itemView, getLayoutPosition());
+                }
+            }
+        });
     }
 }
